@@ -15,6 +15,11 @@ public class DBConnection {
 
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            }catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         }
         return connection;
