@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.icbt.model.User" %>
 <%
     // Check if user is logged in
-    String username = (String) session.getAttribute("username");
+    User user = (User) session.getAttribute("user");
 
-    if (username == null || username.isEmpty()) {
+    if (user == null) {
         // Redirect to login page if not logged in
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("login");
         return;
     }
 %>
@@ -32,23 +33,23 @@
         .logout-button {
             margin-top: 20px;
             padding: 8px 20px;
-            background-color: #e74c3c;
+            background-color: #16e2e8;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .logout-button:hover {
-            background-color: #c0392b;
+            background-color: #16e2e8;
         }
     </style>
 </head>
 <body>
 
 <div class="dashboard">
-    <h2>Welcome, <%= username %>!</h2>
+    <h2>Welcome, <%= user.getName() %>!</h2>
     <p>This is your dashboard.</p>
-    <form action="logout.jsp" method="post">
+    <form action="logout" method="post">
         <button type="submit" class="logout-button">Logout</button>
     </form>
 </div>
