@@ -23,24 +23,45 @@
         }
         .dashboard {
             background-color: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
-            width: 300px;
+            width: 400px;
             margin: auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
             text-align: center;
         }
-        .logout-button {
-            margin-top: 20px;
-            padding: 8px 20px;
-            background-color: #16e2e8;
-            color: white;
+        .dashboard h2 {
+            margin-bottom: 10px;
+        }
+        .dashboard p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .dashboard-button, .logout-button {
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 16px;
             cursor: pointer;
+            color: white;
+            text-decoration: none;
+        }
+        .dashboard-button {
+            background-color: #16e2e8;
+        }
+        .dashboard-button:hover {
+            background-color: #278fbc;
+        }
+        .logout-button {
+            background-color: #e6677d;
         }
         .logout-button:hover {
-            background-color: #16e2e8;
+            background-color: #f41d44;
         }
     </style>
 </head>
@@ -49,9 +70,14 @@
 <div class="dashboard">
     <h2>Welcome, <%= user.getName() %>!</h2>
     <p>This is your dashboard.</p>
-    <form action="logout" method="post">
-        <button type="submit" class="logout-button">Logout</button>
-    </form>
+
+    <div class="button-group">
+        <a href="add_customer.jsp" class="dashboard-button">Add Customer</a>
+        <a href="customer" class="dashboard-button">List Customers</a>
+        <form action="logout" method="post">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
 </div>
 
 </body>
