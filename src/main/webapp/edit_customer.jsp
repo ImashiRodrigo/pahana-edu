@@ -64,6 +64,7 @@
 <div class="container">
     <h2>Edit Customer</h2>
     <form action="customer" method="post">
+        <input type="hidden" name="_method" value="PUT">
         <label>ID</label>
         <input type="text" name="id" value="<%= customer.getId() %>" readonly>
 

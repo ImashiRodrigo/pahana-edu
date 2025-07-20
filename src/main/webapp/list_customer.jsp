@@ -40,11 +40,11 @@
             text-align: left;
         }
         th {
-            background-color: #3498db;
+            background-color: #16e2e8;
             color: white;
         }
         .action-links a {
-            color: #e74c3c;
+            color: #f41d44;
             text-decoration: none;
             margin-right: 10px;
             font-weight: bold;
@@ -81,7 +81,8 @@
             <td><%= c.getUnitsConsumed() %></td>
             <td><%= c.getCreatedAt() %></td>
             <td class="action-links">
-                <a href="customer?accountNumber=<%= c.getAccountNumber() %>">Delete</a>
+                <a href="customer?action=edit&id=<%= c.getId()%>">Edit</a>
+                <a href="customer?action=delete&id=<%= c.getId() %>">Delete</a>
             </td>
         </tr>
         <%

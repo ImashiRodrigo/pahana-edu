@@ -38,7 +38,7 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #3498db;
+            background-color: #16e2e8;
             color: white;
             border: none;
             font-size: 16px;
@@ -46,7 +46,7 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #2980b9;
+            background-color: #278fbc;
         }
     </style>
 </head>

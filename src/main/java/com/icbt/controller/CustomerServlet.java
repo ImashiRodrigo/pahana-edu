@@ -30,27 +30,39 @@ public class CustomerServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         String idParam = req.getParameter("id");
+        String action =  req.getParameter("action");
 
-        try {
-            if (idParam != null) {
-                int id = Integer.parseInt(idParam);
-                Customer customer = customerService.getCustomerById(id);
-                if (customer != null) {
-                    out.println("<h3>Customer Details:</h3>");
-                    out.println("Name: " + customer.getName() + "<br>");
-                    out.println("Address: " + customer.getAddress() + "<br>");
-                } else {
-                    out.println("<p>No customer found with ID " + id + "</p>");
-                }
-            } else {
-                List<Customer> customers = customerService.getAllCustomers();
-                out.println("<h3>All Customers</h3>");
-                for (Customer c : customers) {
-                    out.println("ID: " + c.getId() + " | Name: " + c.getName() + "<br>");
-                }
+        if  (idParam != null) {
+            if("edit".equalsIgnoreCase(action)) {
+                Customer customer = customerService.getCustomerById(Integer.parseInt(idParam));
+                req.setAttribute("customer", customer);
+                req.getRequestDispatcher("edit_customer.jsp").forward(req, resp);
+            } else if ("delete".equalsIgnoreCase(action)) {
+                customerService.deleteCustomer(Integer.parseInt(idParam));
+                resp.sendRedirect("customer");
             }
-        } catch (Exception e) {
-            out.println("<p>Error: " + e.getMessage() + "</p>");
+        }
+        else {
+            try {
+
+                if (idParam != null) {
+                    int id = Integer.parseInt(idParam);
+                    Customer customer = customerService.getCustomerById(id);
+                    if (customer != null) {
+                        out.println("<h3>Customer Details:</h3>");
+                        out.println("Name: " + customer.getName() + "<br>");
+                        out.println("Address: " + customer.getAddress() + "<br>");
+                    } else {
+                        out.println("<p>No customer found with ID " + id + "</p>");
+                    }
+                } else {
+                    List<Customer> customers = customerService.getAllCustomers();
+                    req.setAttribute("customerList", customers);
+                    req.getRequestDispatcher("list_customer.jsp").forward(req, resp);
+                }
+            } catch (Exception e) {
+                out.println("<p>Error: " + e.getMessage() + "</p>");
+            }
         }
     }
 
@@ -58,32 +70,45 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        try {
-            int accountNumber = Integer.parseInt(req.getParameter("accountNumber"));
-            String name = req.getParameter("name");
-            String address = req.getParameter("address");
-            String telephone = req.getParameter("telephone");
-            int unitsConsumed = Integer.parseInt(req.getParameter("unitsConsumed"));
 
-            Customer customer = new Customer();
-            customer.setAccountNumber(accountNumber);
-            customer.setName(name);
-            customer.setAddress(address);
-            customer.setTelephone(telephone);
-            customer.setUnitsConsumed(unitsConsumed);
 
-            boolean success = customerService.addCustomer(customer);
+        String method  = req.getParameter("_method");
 
-            if (success) {
-                resp.sendRedirect("customers.jsp");
-            } else {
-                req.setAttribute("error", "Failed to add customer.");
+        if  (method != null) {
+            if ("PUT".equalsIgnoreCase(method)) {
+                doPut(req, resp);
+            } else if ("DELETE".equalsIgnoreCase(method)) {
+                doDelete(req, resp);
+            }
+        }else {
+
+            try {
+                int accountNumber = Integer.parseInt(req.getParameter("accountNumber"));
+                String name = req.getParameter("name");
+                String address = req.getParameter("address");
+                String telephone = req.getParameter("telephone");
+                int unitsConsumed = Integer.parseInt(req.getParameter("unitsConsumed"));
+
+                Customer customer = new Customer();
+                customer.setAccountNumber(accountNumber);
+                customer.setName(name);
+                customer.setAddress(address);
+                customer.setTelephone(telephone);
+                customer.setUnitsConsumed(unitsConsumed);
+
+                boolean success = customerService.addCustomer(customer);
+
+                if (success) {
+                    resp.sendRedirect("customer");
+                } else {
+                    req.setAttribute("error", "Failed to add customer.");
+                    req.getRequestDispatcher("add-customer.jsp").forward(req, resp);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                req.setAttribute("error", "Invalid input.");
                 req.getRequestDispatcher("add-customer.jsp").forward(req, resp);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            req.setAttribute("error", "Invalid input.");
-            req.getRequestDispatcher("add-customer.jsp").forward(req, resp);
         }
     }
 
@@ -105,6 +130,7 @@ public class CustomerServlet extends HttpServlet {
 
             resp.setContentType("text/plain");
             resp.getWriter().write(updated ? "Customer updated successfully." : "Update failed.");
+            resp.sendRedirect("customer");
         } catch (Exception e) {
             e.printStackTrace();
             resp.setContentType("text/plain");
