@@ -29,6 +29,15 @@
             text-align: center;
             color: #333;
         }
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            color: #f41d44;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+        }
         label {
             display: block;
             margin-top: 10px;
@@ -48,7 +57,7 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #27ae60;
+            background-color: #16e2e8;
             color: white;
             border: none;
             font-size: 16px;
@@ -56,13 +65,16 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #219150;
+            background-color: #278fbc;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Edit Customer</h2>
+    <div class="top-actions">
+        <a href="dashboard.jsp">Back</a>
+    </div>
     <form action="customer" method="post">
         <input type="hidden" name="_method" value="PUT">
         <label>ID</label>

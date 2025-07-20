@@ -50,6 +50,23 @@ public class CustomerDAO {
         return null;
     }
 
+    public Customer getCustomerByAccountNumber(int  accountNumber) {
+        String sql = "SELECT * FROM customers WHERE account_number = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, accountNumber);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return extractCustomerFromResultSet(rs);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error fetching customer by ID: " + ex.getMessage());
+        }
+        return null;
+    }
+
     // GET all
     public List<Customer> getAllCustomers() {
         List<Customer> customers = new ArrayList<>();

@@ -43,12 +43,24 @@
             background-color: #16e2e8;
             color: white;
         }
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            color: #f41d44;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+
+
+        }
         .action-links a {
             color: #f41d44;
             text-decoration: none;
             margin-right: 10px;
             font-weight: bold;
         }
+
         .action-links a:hover {
             text-decoration: underline;
         }
@@ -57,6 +69,9 @@
 <body>
 <div class="container">
     <h2>Customer List</h2>
+    <div class="top-actions">
+        <a href="dashboard.jsp">Back</a>
+    </div>
     <table>
         <tr>
             <th>ID</th>

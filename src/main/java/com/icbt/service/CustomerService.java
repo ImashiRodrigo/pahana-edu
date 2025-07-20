@@ -37,4 +37,8 @@ public class CustomerService {
     public boolean deleteCustomer(int id) {
         return customerDAO.deleteCustomer(id);
     }
+
+    public Customer getCustomerByAccountNumber(int accountNumber) {
+        return customerDAO.getCustomerByAccountNumber(accountNumber);
+    }
 }
