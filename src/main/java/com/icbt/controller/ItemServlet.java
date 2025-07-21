@@ -56,7 +56,7 @@ public class ItemServlet extends HttpServlet {
         } else {
             List<Item> items = itemService.getAllItems();
             req.setAttribute("itemList", items);
-            req.getRequestDispatcher("list_items.jsp").forward(req, resp);
+            req.getRequestDispatcher("list_item.jsp").forward(req, resp);
         }
     }
 
@@ -110,7 +110,7 @@ public class ItemServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
-            int id = Integer.parseInt(req.getParameter("id"));
+            int id = Integer.parseInt(req.getParameter("itemId"));
             String name = req.getParameter("itemName");
             String description = req.getParameter("description");
             double price = Double.parseDouble(req.getParameter("pricePerUnit"));
