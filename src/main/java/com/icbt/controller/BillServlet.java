@@ -2,6 +2,7 @@ package com.icbt.controller;
 
 import com.icbt.model.Bill;
 import com.icbt.model.BillItem;
+import com.icbt.service.BillItemService;
 import com.icbt.service.BillService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,16 +12,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/bill")
 public class BillServlet extends HttpServlet {
 
     private BillService billService;
+    private BillItemService billItemService;
+
 
     @Override
     public void init() {
         billService = new BillService();
+        billItemService = new BillItemService();
     }
 
     @Override
@@ -35,7 +40,7 @@ public class BillServlet extends HttpServlet {
             int id = Integer.parseInt(idParam);
             Bill bill = billService.getBillById(id);
             if (bill != null) {
-                List<BillItem> items = billService.getBillItemsByBillId(id);
+                List<BillItem> items = billItemService.getBillItemsByBillId(id);
                 req.setAttribute("bill", bill);
                 req.setAttribute("billItems", items);
                 req.getRequestDispatcher("view_bill.jsp").forward(req, resp);
@@ -62,6 +67,7 @@ public class BillServlet extends HttpServlet {
             Bill bill = new Bill();
             bill.setAccountNumber(accountNumber);
 
+            List<BillItem> items = new ArrayList<>();
             for (int i = 0; i < itemIds.length; i++) {
                 int itemId = Integer.parseInt(itemIds[i]);
                 int qty = Integer.parseInt(quantities[i]);
@@ -71,8 +77,9 @@ public class BillServlet extends HttpServlet {
                 item.setItemId(itemId);
                 item.setQuantity(qty);
                 item.setPrice(price);
-                bill.addItem(item);
+                items.add(item);
             }
+            bill.setItems(items);
 
             boolean success = billService.addBill(bill);
             if (success) {
@@ -104,4 +111,3 @@ public class BillServlet extends HttpServlet {
         }
     }
 }
-

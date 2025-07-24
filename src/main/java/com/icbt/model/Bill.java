@@ -1,12 +1,14 @@
 package com.icbt.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Bill {
     private int id;
     private int accountNumber;
     private double totalAmount;
     private Timestamp billDate;
+    private List<BillItem> items;
 
     public Bill() {
     }
@@ -19,6 +21,14 @@ public class Bill {
     }
 
     // Getters and Setters
+
+    public List<BillItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<BillItem> items) {
+        this.items = items;
+    }
 
     public int getId() {
         return id;
