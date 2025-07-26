@@ -2,8 +2,12 @@ package com.icbt.controller;
 
 import com.icbt.model.Bill;
 import com.icbt.model.BillItem;
+import com.icbt.model.Customer;
+import com.icbt.model.Item;
 import com.icbt.service.BillItemService;
 import com.icbt.service.BillService;
+import com.icbt.service.CustomerService;
+import com.icbt.service.ItemService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,12 +24,16 @@ public class BillServlet extends HttpServlet {
 
     private BillService billService;
     private BillItemService billItemService;
+    private CustomerService customerService;
+    private ItemService itemService;
 
 
     @Override
     public void init() {
         billService = new BillService();
         billItemService = new BillItemService();
+        customerService = new CustomerService();
+        itemService = new ItemService();
     }
 
     @Override
@@ -48,9 +56,18 @@ public class BillServlet extends HttpServlet {
                 out.println("<p>No bill found with ID " + id + "</p>");
             }
         } else {
-            List<Bill> bills = billService.getAllBills();
-            req.setAttribute("billList", bills);
-            req.getRequestDispatcher("list_bills.jsp").forward(req, resp);
+            String action = req.getParameter("action");
+            if (action != null && action.equals("new")) {
+                List<Item> items = itemService.getAllItems();
+                List<Customer> customers = customerService.getAllCustomers();
+                req.setAttribute("customers", customers);
+                req.setAttribute("items", items);
+                req.getRequestDispatcher("add_bill.jsp").forward(req, resp);
+            } else {
+                List<Bill> bills = billService.getAllBills();
+                req.setAttribute("billList", bills);
+                req.getRequestDispatcher("list_bill.jsp").forward(req, resp);
+            }
         }
     }
 
@@ -60,18 +77,20 @@ public class BillServlet extends HttpServlet {
 
         try {
             int accountNumber = Integer.parseInt(req.getParameter("accountNumber"));
-            String[] itemIds = req.getParameterValues("itemId");
-            String[] quantities = req.getParameterValues("quantity");
-            String[] prices = req.getParameterValues("price");
+            String[] itemIds = req.getParameterValues("itemIds[]");
+            String[] quantities = req.getParameterValues("quantities[]");
+            String[] prices = req.getParameterValues("prices[]");
 
             Bill bill = new Bill();
             bill.setAccountNumber(accountNumber);
+            double totalAmount = 0;
 
             List<BillItem> items = new ArrayList<>();
             for (int i = 0; i < itemIds.length; i++) {
                 int itemId = Integer.parseInt(itemIds[i]);
                 int qty = Integer.parseInt(quantities[i]);
                 double price = Double.parseDouble(prices[i]);
+                totalAmount += price * qty;
 
                 BillItem item = new BillItem();
                 item.setItemId(itemId);
@@ -80,7 +99,7 @@ public class BillServlet extends HttpServlet {
                 items.add(item);
             }
             bill.setItems(items);
-
+            bill.setTotalAmount(totalAmount);
             boolean success = billService.addBill(bill);
             if (success) {
                 resp.sendRedirect("bill");

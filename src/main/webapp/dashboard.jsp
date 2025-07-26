@@ -76,6 +76,8 @@
         <a href="customer" class="dashboard-button">Customer List</a>
         <a href="add_item.jsp" class="dashboard-button">Add Items</a>
         <a href="item" class="dashboard-button">Item List</a>
+        <a href="bill?action=new" class="dashboard-button">Add Bill</a>
+        <a href="bill" class="dashboard-button">Bill List</a>
         <form action="logout" method="post">
             <button type="submit" class="logout-button">Logout</button>
         </form>

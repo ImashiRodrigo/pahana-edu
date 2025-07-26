@@ -20,6 +20,14 @@ public class Bill {
         this.billDate = billDate;
     }
 
+    public  Bill(int id, int accountNumber, double totalAmount ,  Timestamp billDate, List<BillItem> items) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.totalAmount = totalAmount;
+        this.billDate = billDate;
+        this.items = items;
+    }
+
     // Getters and Setters
 
     public List<BillItem> getItems() {

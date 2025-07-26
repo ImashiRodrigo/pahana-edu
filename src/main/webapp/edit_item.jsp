@@ -59,11 +59,35 @@
         button:hover {
             background-color: #278fbc;
         }
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            color: #f41d44;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+
+
+        }
+        .action-links a {
+            color: #f41d44;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .action-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Edit Item</h2>
+    <div class="top-actions">
+        <a href="dashboard.jsp">Back</a>
+    </div>
     <form action="item" method="post">
         <input type="hidden" name="_method" value="PUT">
         <label>Item ID</label>

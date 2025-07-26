@@ -116,5 +116,24 @@ public class BillDAO {
 
         return false;
     }
+
+    public Bill getLatestBill() {
+        String sql = "SELECT * FROM bills ORDER BY bill_date DESC LIMIT 1";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return new Bill(
+                        rs.getInt("id"),
+                        rs.getInt("account_number"),
+                        rs.getDouble("total_amount"),
+                        rs.getTimestamp("bill_date")
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }
 

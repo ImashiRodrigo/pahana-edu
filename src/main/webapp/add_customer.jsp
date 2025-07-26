@@ -48,11 +48,15 @@
         button:hover {
             background-color: #278fbc;
         }
+
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Add Customer</h2>
+    <div class="top-actions">
+        <a href="dashboard.jsp">Back</a>
+    </div>
     <form action="customer" method="post">
         <label>Account Number</label>
         <input type="number" name="accountNumber" required>
