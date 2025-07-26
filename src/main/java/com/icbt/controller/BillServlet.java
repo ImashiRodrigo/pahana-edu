@@ -45,15 +45,25 @@ public class BillServlet extends HttpServlet {
         String idParam = req.getParameter("id");
 
         if (idParam != null) {
+            String action = req.getParameter("action");
             int id = Integer.parseInt(idParam);
-            Bill bill = billService.getBillById(id);
-            if (bill != null) {
+            if (action != null && action.equals("edit")) {
+                Bill bill = billService.getBillById(id);
+                if (bill != null) {
+                    List<BillItem> items = billItemService.getBillItemsByBillId(id);
+                    req.setAttribute("bill", bill);
+                    req.setAttribute("billItems", items);
+                    req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
+                } else {
+                    out.println("<p>No bill found with ID " + id + "</p>");
+                }
+            } else{
+                billService.deleteBill(id);
                 List<BillItem> items = billItemService.getBillItemsByBillId(id);
-                req.setAttribute("bill", bill);
-                req.setAttribute("billItems", items);
-                req.getRequestDispatcher("view_bill.jsp").forward(req, resp);
-            } else {
-                out.println("<p>No bill found with ID " + id + "</p>");
+                for (BillItem item : items) {
+                    billItemService.deleteBillItem(item.getId());
+                }
+                resp.sendRedirect("bill");
             }
         } else {
             String action = req.getParameter("action");

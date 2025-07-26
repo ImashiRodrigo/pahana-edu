@@ -105,7 +105,7 @@
         <a href="dashboard.jsp">Back</a>
     </div>
 
-    <a href="add_bill.jsp" class="add-button">+ Add New Bill</a>
+    <a href="bill?action=new" class="add-button">+ Add New Bill</a>
 
     <%
         BillService billService = new BillService();
@@ -133,8 +133,8 @@
             <td><%= String.format("%.2f", bill.getTotalAmount()) %></td>
             <td><%= bill.getBillDate() %></td>
             <td class="action-links">
-                <a href="edit_bill.jsp?id=<%= bill.getId() %>">Edit</a>
-                <a href="DeleteBillServlet?id=<%= bill.getId() %>" onclick="return confirm('Are you sure you want to delete this bill?')">Delete</a>
+                <a href="edit_bill.jsp?action=edit&id=<%= bill.getId() %>">Edit</a>
+                <a href="bill?action=delete&id=<%= bill.getId() %>" onclick="return confirm('Are you sure you want to delete this bill?')">Delete</a>
             </td>
         </tr>
         <%
