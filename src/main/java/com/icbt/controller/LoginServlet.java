@@ -35,7 +35,7 @@ User user = userService.login(username, password);
 if (user != null) {
     HttpSession session = req.getSession();
     session.setAttribute("user", user);
-    resp.sendRedirect("dashboard.jsp");
+    resp.sendRedirect("dashboard");
 
 }else  {
 resp.sendRedirect("login.jsp");

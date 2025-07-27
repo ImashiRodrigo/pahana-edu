@@ -20,7 +20,7 @@ public class BillService {
     public boolean addBill(Bill bill) {
         billDAO.addBill(bill);
         Bill addedBill = billDAO.getLatestBill();
-        if (addedBill != null) {
+        if (addedBill != null && bill.getItems()!= null){
             for (BillItem item : bill.getItems()) {
                 item.setBillId(addedBill.getId());
                 billItemService.addBillItem(item);

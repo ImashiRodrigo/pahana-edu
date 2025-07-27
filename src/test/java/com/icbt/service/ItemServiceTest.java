@@ -39,6 +39,7 @@ public class ItemServiceTest {
             }
         }
 
+
         assertNotNull(savedItem);
         testItemId = savedItem.getItemId();
     }

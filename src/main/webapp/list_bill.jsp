@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.icbt.model.Bill" %>
+<%@ page import="com.icbt.model.BillItem" %>
+<%@ page import="com.icbt.model.Item" %>
 <%@ page import="com.icbt.service.BillService" %>
+<%@ page import="com.icbt.service.BillItemService" %>
+<%@ page import="com.icbt.service.ItemService" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +43,7 @@
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #ddd;
+            vertical-align: top;
         }
 
         th {
@@ -53,7 +58,8 @@
         .action-links a {
             margin: 0 8px;
             text-decoration: none;
-            color: #16e2e8;
+            color: #f41d44;
+            font-weight: bold;
         }
 
         .action-links a:hover {
@@ -74,26 +80,36 @@
         .add-button:hover {
             background-color: #f41d44;
         }
+
         .top-actions {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 15px;
-            color: #f41d44;
-            text-decoration: none;
             margin-right: 10px;
-            font-weight: bold;
-
-
         }
-        .action-links a {
+
+        .top-actions a {
             color: #f41d44;
             text-decoration: none;
-            margin-right: 10px;
             font-weight: bold;
         }
 
-        .action-links a:hover {
-            text-decoration: underline;
+        .nested-table {
+            width: 100%;
+            border: 1px solid #ddd;
+            margin-top: 5px;
+        }
+
+        .nested-table th, .nested-table td {
+            padding: 6px;
+            font-size: 13px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .nested-table th {
+            background-color: #f9f9f9;
+            color: #555;
         }
     </style>
 </head>
@@ -109,6 +125,8 @@
 
     <%
         BillService billService = new BillService();
+        BillItemService billItemService = new BillItemService();
+        ItemService itemService = new ItemService();
         List<Bill> bills = billService.getAllBills();
     %>
 
@@ -119,6 +137,7 @@
             <th>Account Number</th>
             <th>Total Amount (Rs)</th>
             <th>Bill Date</th>
+            <th>Items</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -126,12 +145,36 @@
         <%
             if (bills != null && !bills.isEmpty()) {
                 for (Bill bill : bills) {
+                    List<BillItem> billItems = billItemService.getBillItemsByBillId(bill.getId());
         %>
         <tr>
             <td><%= bill.getId() %></td>
             <td><%= bill.getAccountNumber() %></td>
             <td><%= String.format("%.2f", bill.getTotalAmount()) %></td>
             <td><%= bill.getBillDate() %></td>
+            <td>
+                <table class="nested-table">
+                    <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                        for (BillItem bi : billItems) {
+                            String itemName = itemService.getItemById(bi.getItemId()).getItemName();
+                    %>
+                    <tr>
+                        <td><%= itemName %></td>
+                        <td><%= bi.getQuantity() %></td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
+            </td>
             <td class="action-links">
                 <a href="edit_bill.jsp?action=edit&id=<%= bill.getId() %>">Edit</a>
                 <a href="bill?action=delete&id=<%= bill.getId() %>" onclick="return confirm('Are you sure you want to delete this bill?')">Delete</a>
@@ -142,7 +185,7 @@
         } else {
         %>
         <tr>
-            <td colspan="5">No bills found.</td>
+            <td colspan="6">No bills found.</td>
         </tr>
         <%
             }
