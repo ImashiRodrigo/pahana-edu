@@ -49,11 +49,35 @@
         button:hover {
             background-color: #278fbc;
         }
+        .top-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+            color: #f41d44;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+
+
+        }
+        .action-links a {
+            color: #f41d44;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .action-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>Add Item</h2>
+    <div class="top-actions">
+        <a href="dashboard.jsp">Back</a>
+    </div>
     <form action="item" method="post">
         <label>Item Name</label>
         <input type="text" name="itemName" required>
