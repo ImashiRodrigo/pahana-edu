@@ -107,7 +107,7 @@
     <div class="top-actions">
         <a href="dashboard.jsp">Back</a>
     </div>
-    <form action="bill" method="post">
+    <form action="bill?action=edit" method="post">
         <input type="hidden" name="_method" value="PUT">
 
         <!-- Bill Info -->
@@ -141,14 +141,14 @@
             %>
             <tr>
                 <td>
-                    <input type="hidden" name="itemIds" value="<%= bi.getItemId() %>">
+                    <input type="hidden" name="itemIds[]" value="<%= bi.getItemId() %>">
                     <%= matchedItem != null ? matchedItem.getItemName() : "Unknown Item" %>
                 </td>
                 <td>
-                    <input type="number" name="quantity_<%= bi.getItemId() %>" value="<%= bi.getQuantity() %>" min="0">
+                    <input type="number" name="quantities[]" value="<%= bi.getQuantity() %>" min="0">
                 </td>
                 <td>
-                    <input type="number" name="price_<%= bi.getItemId() %>" value="<%= bi.getPrice() %>" step="0.01">
+                    <input type="number" name="prices[]" value="<%= bi.getPrice() %>" step="0.01">
                 </td>
             </tr>
             <%

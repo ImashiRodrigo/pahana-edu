@@ -176,7 +176,7 @@
                 </table>
             </td>
             <td class="action-links">
-                <a href="edit_bill.jsp?action=edit&id=<%= bill.getId() %>">Edit</a>
+                <a href="bill?action=edit&id=<%= bill.getId() %>">Edit</a>
                 <a href="bill?action=delete&id=<%= bill.getId() %>" onclick="return confirm('Are you sure you want to delete this bill?')">Delete</a>
             </td>
         </tr>

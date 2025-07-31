@@ -47,17 +47,22 @@ public class BillServlet extends HttpServlet {
         if (idParam != null) {
             String action = req.getParameter("action");
             int id = Integer.parseInt(idParam);
-            if (action != null && action.equals("edit")) {
+            if (action != null) {
+                if(action.equals("edit")) {
                 Bill bill = billService.getBillById(id);
+                req.setAttribute("bill", bill);
                 if (bill != null) {
                     List<BillItem> items = billItemService.getBillItemsByBillId(id);
-                    req.setAttribute("bill", bill);
+                    List<Item> items2 = itemService.getAllItems();
+
+                    System.out.println("bill" + bill.getId());
                     req.setAttribute("billItems", items);
+                    req.setAttribute("allItems", items2);
                     req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
                 } else {
                     out.println("<p>No bill found with ID " + id + "</p>");
                 }
-            } else{
+            } else {
                 billService.deleteBill(id);
                 List<BillItem> items = billItemService.getBillItemsByBillId(id);
                 for (BillItem item : items) {
@@ -65,6 +70,7 @@ public class BillServlet extends HttpServlet {
                 }
                 resp.sendRedirect("bill");
             }
+        }
         } else {
             String action = req.getParameter("action");
             if (action != null && action.equals("new")) {
@@ -86,6 +92,8 @@ public class BillServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            String action = req.getParameter("action");
+
             int accountNumber = Integer.parseInt(req.getParameter("accountNumber"));
             String[] itemIds = req.getParameterValues("itemIds[]");
             String[] quantities = req.getParameterValues("quantities[]");
@@ -110,20 +118,39 @@ public class BillServlet extends HttpServlet {
             }
             bill.setItems(items);
             bill.setTotalAmount(totalAmount);
-            boolean success = billService.addBill(bill);
-            if (success) {
-                resp.sendRedirect("bill");
+
+            boolean success;
+            if ("edit".equalsIgnoreCase(action)) {
+                int billId = Integer.parseInt(req.getParameter("billId"));
+                bill.setId(billId);
+                success = billService.updateBill(bill);
             } else {
-                req.setAttribute("error", "Failed to add bill.");
-                req.getRequestDispatcher("add_bill.jsp").forward(req, resp);
+                success = billService.addBill(bill);
+            }
+
+            if (success) {
+                resp.sendRedirect("bill"); //  Redirect to bill list after save/update
+            } else {
+                req.setAttribute("error", "Failed to save bill.");
+                if ("edit".equalsIgnoreCase(action)) {
+                    req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
+                } else {
+                    req.getRequestDispatcher("add_bill.jsp").forward(req, resp);
+                }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("error", "Invalid input.");
-            req.getRequestDispatcher("add_bill.jsp").forward(req, resp);
+            String action = req.getParameter("action");
+            if ("edit".equalsIgnoreCase(action)) {
+                req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
+            } else {
+                req.getRequestDispatcher("add_bill.jsp").forward(req, resp);
+            }
         }
     }
+
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
