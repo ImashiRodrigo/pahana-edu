@@ -18,16 +18,16 @@
 
 ## 📋 Feature Testing
 
-| Module              | Test Case Description                                 | Status          |
-|---------------------|-------------------------------------------------------|-----------------|
-| Authentication      | Login with valid/invalid credentials                  | ☐ Pass / ☐ Fail |
-| Logout              | Logout clears session and redirects to login          | ☐ Pass / ☐ Fail |
-| Dashboard           | Links to all modules are visible and functional       | ☐ Pass / ☐ Fail |
-| Customer Management | Add, edit, delete, list customers                     | ☐ Pass / ☐ Fail |
-| Item Management     | Add, edit, delete, list items with styled UI          | ☐ Pass / ☐ Fail |
-| Billing Module      | Create bill with multiple items, quantity, total calc | ☐ Pass / ☐ Fail |
-| Billing Module      | View bill details correctly                           | ☐ Pass / ☐ Fail |
-| Help Page           | Opens help.jsp from dashboard and shows guide         | ☐ Pass / ☐ Fail |
+| Module              | Test Case Description                                 | Status |
+|---------------------|-------------------------------------------------------|--------|
+| Authentication      | Login with valid/invalid credentials                  | ✅Pass  |
+| Logout              | Logout clears session and redirects to login          | ✅Pass |
+| Dashboard           | Links to all modules are visible and functional       | ✅Pass  |
+| Customer Management | Add, edit, delete, list customers                     | ✅Pass  |
+| Item Management     | Add, edit, delete, list items with styled UI          | ✅Pass  |
+| Billing Module      | Create bill with multiple items, quantity, total calc | ✅Pass  |
+| Billing Module      | View bill details correctly                           | ✅Pass |
+| Help Page           | Opens help.jsp from dashboard and shows guide         | ✅Pass  |
 
 ---
 
