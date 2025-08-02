@@ -33,23 +33,23 @@
 
 ## 🧪 JUnit Testing
 
-| Task                                            | Status          |
-|-------------------------------------------------|-----------------|
-| `mvn clean test` runs successfully              | ☐ Pass / ☐ Fail |
-| DAO layer tests (Customer, Item) pass           | ☐ Pass / ☐ Fail |
-| Service layer tests (Customer, Item, Auth) pass | ☐ Pass / ☐ Fail |
-| Test setup and teardown logic verified          | ☐ Pass / ☐ Fail |
+| Task                                            | Status |
+|-------------------------------------------------|-------|
+| `mvn clean test` runs successfully              | ✅Pass |
+| DAO layer tests (Customer, Item) pass           | ✅Pass |
+| Service layer tests (Customer, Item, Auth) pass | ✅Pass |
+| Test setup and teardown logic verified          | ✅Pass |
 
 ---
 
 ## 🛠 Technical Checks
 
-| Task                                       | Status      |
-|--------------------------------------------|-------------|
-| `pom.xml` version set to `1.0.0`           | ☐ Confirmed |
-| `CHANGELOG.md` entry for v1.0.0 is present | ☐ Confirmed |
-| App builds and runs without crash          | ☐ Confirmed |
-| No debugging code or console logs remain   | ☐ Confirmed |
+| Task                                       | Status     |
+|--------------------------------------------|------------|
+| `pom.xml` version set to `1.0.0`           | ✅ Confirmed |
+| `CHANGELOG.md` entry for v1.0.0 is present | ✅ Confirmed |
+| App builds and runs without crash          | ✅ Confirmed |
+| No debugging code or console logs remain   | ✅ Confirmed |
 
 ---
 
@@ -59,4 +59,4 @@
 
 ---
 
-### ✅ Ready to Merge into `regression`: ☐ Yes / ☐ No
+### ✅ Ready to Merge into `regression`: ✅Yes 
