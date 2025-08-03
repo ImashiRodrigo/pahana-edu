@@ -94,7 +94,7 @@
     <h2>Create New Bill</h2>
     <form action="bill" method="post">
         <div class="top-actions">
-            <a href="dashboard.jsp">Back</a>
+            <a href="dashboard">Back</a>
         </div>
         <!-- Select Customer -->
         <label for="accountNumber">Select Customer (Account Number)</label>

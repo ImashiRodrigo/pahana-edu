@@ -31,6 +31,9 @@ public class CustomerServlet extends HttpServlet {
 
         String idParam = req.getParameter("id");
         String action =  req.getParameter("action");
+        if ("new".equalsIgnoreCase(action)) {
+            req.getRequestDispatcher("add_customer.jsp").forward(req, resp);
+        }
 
         if  (idParam != null) {
             if("edit".equalsIgnoreCase(action)) {
