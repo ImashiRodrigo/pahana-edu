@@ -86,7 +86,7 @@
 <div class="container">
     <h2>Edit Item</h2>
     <div class="top-actions">
-        <a href="dashboard.jsp">Back</a>
+        <a href="dashboard">Back</a>
     </div>
     <form action="item" method="post">
         <input type="hidden" name="_method" value="PUT">

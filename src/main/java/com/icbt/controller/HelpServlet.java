@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/dashboard")
-public class  DashboardServlet extends HttpServlet {
+@WebServlet("/help")
+public class  HelpServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -23,10 +23,11 @@ public class  DashboardServlet extends HttpServlet {
 
         if (user != null) {
             req.setAttribute("user", user); // Optional: pass user to JSP
-            req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
+            req.getRequestDispatcher("help.jsp").forward(req, resp);
         } else {
             resp.sendRedirect("login.jsp"); // Redirect if not logged in
         }
     }
 }
+
 
