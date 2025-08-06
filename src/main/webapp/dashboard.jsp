@@ -78,6 +78,7 @@
         <a href="item" class="dashboard-button">Item List</a>
         <a href="bill?action=new" class="dashboard-button">Add Bill</a>
         <a href="bill" class="dashboard-button">Bill List</a>
+        <a href="customer?action=view" class="dashboard-button">Account Details</a>
         <a href="help" class="dashboard-button">Help Section</a>
         <form action="logout" method="post">
             <button type="submit" class="logout-button">Logout</button>
