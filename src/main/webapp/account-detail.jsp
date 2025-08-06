@@ -86,7 +86,7 @@
 
     <!-- Search Form -->
     <form action="customer" method="get">
-        <input type="text" name="accountNumber" placeholder="Enter Account Number or Name" required>
+        <input type="text" name="accountNumber" placeholder="Enter Account Number " required>
         <input type="hidden" name="action" value="search" required>
         <button type="submit">Search</button>
 
