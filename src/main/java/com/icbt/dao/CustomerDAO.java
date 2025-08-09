@@ -26,8 +26,7 @@ public class CustomerDAO {
             return rowsInserted > 0;
 
         } catch (SQLException ex) {
-            System.out.println("Error inserting custome" +
-                    "r: " + ex.getMessage());
+
             return false;
         }
     }
@@ -45,7 +44,7 @@ public class CustomerDAO {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println("Error fetching customer by ID: " + ex.getMessage());
+
         }
         return null;
     }
@@ -62,7 +61,7 @@ public class CustomerDAO {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println("Error fetching customer by ID: " + ex.getMessage());
+
         }
         return null;
     }
@@ -81,7 +80,7 @@ public class CustomerDAO {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Error fetching all customers: " + ex.getMessage());
+
         }
         return customers;
     }
@@ -104,7 +103,7 @@ public class CustomerDAO {
             return rowsUpdated > 0;
 
         } catch (SQLException ex) {
-            System.out.println("Error updating customer: " + ex.getMessage());
+
             return false;
         }
     }
@@ -122,7 +121,7 @@ public class CustomerDAO {
             return rowsDeleted > 0;
 
         } catch (SQLException ex) {
-            System.out.println("Error deleting customer: " + ex.getMessage());
+
             return false;
         }
     }

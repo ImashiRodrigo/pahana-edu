@@ -55,7 +55,6 @@ public class BillServlet extends HttpServlet {
                     List<BillItem> items = billItemService.getBillItemsByBillId(id);
                     List<Item> items2 = itemService.getAllItems();
 
-                    System.out.println("bill" + bill.getId());
                     req.setAttribute("billItems", items);
                     req.setAttribute("allItems", items2);
                     req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
