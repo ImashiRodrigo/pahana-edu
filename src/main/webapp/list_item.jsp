@@ -74,7 +74,8 @@
 <div class="container">
     <h2>Item List</h2>
     <div class="top-actions">
-        <a href="dashboard.jsp">Back</a>
+
+        <a href="dashboard">Back</a>
     </div>
     <table>
         <tr>

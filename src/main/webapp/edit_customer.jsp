@@ -73,12 +73,11 @@
 <div class="container">
     <h2>Edit Customer</h2>
     <div class="top-actions">
-        <a href="dashboard.jsp">Back</a>
+        <a href="dashboard">Back</a>
     </div>
     <form action="customer" method="post">
         <input type="hidden" name="_method" value="PUT">
-        <label>ID</label>
-        <input type="text" name="id" value="<%= customer.getId() %>" readonly>
+        <input type="hidden" name="id" value="<%= customer.getId()%>">
 
         <label>Account Number</label>
         <input type="number" name="accountNumber" value="<%= customer.getAccountNumber() %>" readonly>

@@ -31,8 +31,19 @@ public class BillService {
 
     // Update existing bill
     public boolean updateBill(Bill bill) {
-        return billDAO.updateBill(bill);
-    }
+
+         boolean updated = billDAO.updateBill(bill);
+         if(updated){
+             List<BillItem> items = billItemService.getBillItemsByBillId(bill.getId());
+             for (int i=0; i < items.size(); i++){
+                 BillItem item = items.get(i);
+                 item.setQuantity(bill.getItems().get(i).getQuantity());
+                 billItemService.updateBillItem(item);
+             }
+             }
+         return updated;
+         }
+
 
     // Delete bill by ID
     public boolean deleteBill(int id) {

@@ -94,7 +94,8 @@
     <h2>Create New Bill</h2>
     <form action="bill" method="post">
         <div class="top-actions">
-            <a href="dashboard.jsp">Back</a>
+
+            <a href="dashboard">Back</a>
         </div>
         <!-- Select Customer -->
         <label for="accountNumber">Select Customer (Account Number)</label>
@@ -153,11 +154,38 @@
         </table>
         <!-- Total (Optional, could be auto-calculated in backend) -->
         <label>Total Amount (LKR)</label>
-        <input type="number" name="totalAmount" step="0.01" required>
+
+        <input type="number" name="totalAmount" step="0.01" required readonly>
 
         <!-- Submit -->
         <button type="submit">Generate Bill</button>
     </form>
 </div>
 </body>
+
+<!-- Add this script at the bottom of your HTML before </body> -->
+<script>
+    function calculateTotal() {
+        let quantities = document.getElementsByName('quantities[]');
+        let prices = document.getElementsByName('prices[]');
+        let totalField = document.querySelector('input[name="totalAmount"]');
+
+        let total = 0;
+        for (let i = 0; i < quantities.length; i++) {
+            let qty = parseFloat(quantities[i].value) || 0;
+            let price = parseFloat(prices[i].value) || 0;
+            total += qty * price;
+        }
+        totalField.value = total.toFixed(2);
+    }
+
+    // Add event listeners to quantities and prices
+    document.addEventListener('DOMContentLoaded', function () {
+        let qtyFields = document.getElementsByName('quantities[]');
+        let priceFields = document.getElementsByName('prices[]');
+
+        qtyFields.forEach(field => field.addEventListener('input', calculateTotal));
+        priceFields.forEach(field => field.addEventListener('input', calculateTotal));
+    });
+</script>
 </html>

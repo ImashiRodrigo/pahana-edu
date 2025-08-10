@@ -86,12 +86,12 @@
 <div class="container">
     <h2>Edit Item</h2>
     <div class="top-actions">
-        <a href="dashboard.jsp">Back</a>
+
+        <a href="dashboard">Back</a>
     </div>
     <form action="item" method="post">
         <input type="hidden" name="_method" value="PUT">
-        <label>Item ID</label>
-        <input type="text" name="itemId" value="<%= item.getItemId() %>" readonly>
+        <input type="hidden" name="itemId" value="<%=item.getItemId()%>">
 
         <label>Item Name</label>
         <input type="text" name="itemName" value="<%= item.getItemName() %>" required>

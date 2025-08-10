@@ -107,7 +107,8 @@
   <h3>8. Exit System</h3>
   <p>Click <b>Logout</b> or close your browser to exit the system.</p>
 
-  <a href="dashboard.jsp" class="back-button">Back to Dashboard</a>
+  <a href="dashboard" class="back-button">Back to Dashboard</a>
+
 </div>
 
 </body>
