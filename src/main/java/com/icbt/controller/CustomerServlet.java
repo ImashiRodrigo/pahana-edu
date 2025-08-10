@@ -32,6 +32,20 @@ public class CustomerServlet extends HttpServlet {
         String idParam = req.getParameter("id");
         String action =  req.getParameter("action");
 
+        if ("new".equalsIgnoreCase(action)) {
+            req.getRequestDispatcher("add_customer.jsp").forward(req, resp);
+        } else if ("view".equalsIgnoreCase(action)) {
+            req.getRequestDispatcher("account-detail.jsp").forward(req, resp);
+    } else if ("search".equalsIgnoreCase(action)) {
+            String accountNumber = req.getParameter("accountNumber");
+            int accNum =  Integer.parseInt(accountNumber);
+            Customer customer = customerService.getCustomerByAccountNumber(accNum);
+            List<Customer> customers = new ArrayList<>();
+            customers.add(customer);
+            req.setAttribute("customers" , customers );
+            req.getRequestDispatcher("account-detail.jsp").forward(req, resp);
+        }
+
         if  (idParam != null) {
             if("edit".equalsIgnoreCase(action)) {
                 Customer customer = customerService.getCustomerById(Integer.parseInt(idParam));

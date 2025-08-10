@@ -76,7 +76,9 @@
 <div class="container">
     <h2>Add Item</h2>
     <div class="top-actions">
-        <a href="dashboard.jsp">Back</a>
+
+        <a href="dashboard">Back</a>
+
     </div>
     <form action="item" method="post">
         <label>Item Name</label>

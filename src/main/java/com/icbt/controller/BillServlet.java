@@ -55,7 +55,6 @@ public class BillServlet extends HttpServlet {
                     List<BillItem> items = billItemService.getBillItemsByBillId(id);
                     List<Item> items2 = itemService.getAllItems();
 
-                    System.out.println("bill" + bill.getId());
                     req.setAttribute("billItems", items);
                     req.setAttribute("allItems", items2);
                     req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
@@ -129,14 +128,26 @@ public class BillServlet extends HttpServlet {
             }
 
             if (success) {
-                resp.sendRedirect("bill"); //  Redirect to bill list after save/update
-            } else {
-                req.setAttribute("error", "Failed to save bill.");
-                if ("edit".equalsIgnoreCase(action)) {
-                    req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
+
+                List<Bill> billList = billService.getAllBills();
+                Bill bill2 = billList.getFirst();
+                req.setAttribute("bill", bill2);
+                if (bill2 != null) {
+                    List<BillItem> items3 = billItemService.getBillItemsByBillId(bill2.getId());
+                    List<Item> items2 = itemService.getAllItems();
+
+                    req.setAttribute("billItems", items3) ;
+                    req.setAttribute("allItems", items2);
+                    req.getRequestDispatcher("bill_summary.jsp").forward(req, resp);
                 } else {
-                    req.getRequestDispatcher("add_bill.jsp").forward(req, resp);
+                    req.setAttribute("error", "Failed to save bill.");
+                    if ("edit".equalsIgnoreCase(action)) {
+                        req.getRequestDispatcher("edit_bill.jsp").forward(req, resp);
+                    } else {
+                        req.getRequestDispatcher("add_bill.jsp").forward(req, resp);
+                    }
                 }
+
             }
 
         } catch (Exception e) {
