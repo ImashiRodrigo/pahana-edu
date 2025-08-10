@@ -90,6 +90,7 @@
     </div>
     <form action="item" method="post">
         <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="itemId" value="<%=item.getItemId()%>">
 
         <label>Item Name</label>
         <input type="text" name="itemName" value="<%= item.getItemName() %>" required>
