@@ -32,6 +32,9 @@ public class ItemServlet extends HttpServlet {
 
         String idParam = req.getParameter("id");
         String action = req.getParameter("action");
+        if ("new".equalsIgnoreCase(action)) {
+            req.getRequestDispatcher("add_item.jsp").forward(req, resp);
+        }
 
         if (idParam != null) {
             int id = Integer.parseInt(idParam);

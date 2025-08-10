@@ -118,7 +118,7 @@
 <div class="container">
     <h2>Bill List</h2>
     <div class="top-actions">
-        <a href="dashboard.jsp">Back</a>
+        <a href="dashboard">Back</a>
     </div>
 
     <a href="bill?action=new" class="add-button">+ Add New Bill</a>
