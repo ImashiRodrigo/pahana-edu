@@ -120,6 +120,7 @@
     <div class="top-actions">
 
         <a href="dashboard">Back</a>
+
     </div>
 
     <a href="bill?action=new" class="add-button">+ Add New Bill</a>

@@ -10,8 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-
 import java.util.List;
 
 @WebServlet("/customer")
@@ -47,7 +45,6 @@ public class CustomerServlet extends HttpServlet {
             req.setAttribute("customers" , customers );
             req.getRequestDispatcher("account-detail.jsp").forward(req, resp);
         }
-
 
         if  (idParam != null) {
             if("edit".equalsIgnoreCase(action)) {

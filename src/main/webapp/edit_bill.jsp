@@ -105,7 +105,9 @@
 <div class="container">
     <h2>Edit Bill</h2>
     <div class="top-actions">
+
         <a href="dashboard">Back</a>
+
     </div>
     <form action="bill?action=edit" method="post">
         <input type="hidden" name="_method" value="PUT">
@@ -119,7 +121,9 @@
 
         <label>Total Amount (LKR)</label>
 
+
         <input type="number" step="0.01" name="totalAmount" value="<%= bill.getTotalAmount() %>" required readonly>
+
 
         <!-- Edit Bill Items -->
         <label>Bill Items</label>
@@ -192,4 +196,5 @@
         priceFields.forEach(field => field.addEventListener('input', calculateTotal));
     });
 </script>
+
 </html>

@@ -128,6 +128,7 @@ public class BillServlet extends HttpServlet {
             }
 
             if (success) {
+
                 List<Bill> billList = billService.getAllBills();
                 Bill bill2 = billList.getFirst();
                 req.setAttribute("bill", bill2);

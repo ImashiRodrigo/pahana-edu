@@ -44,7 +44,6 @@ public class BillService {
          return updated;
          }
 
-
     // Delete bill by ID
     public boolean deleteBill(int id) {
         return billDAO.deleteBill(id);

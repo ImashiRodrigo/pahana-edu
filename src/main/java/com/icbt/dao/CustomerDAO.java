@@ -26,6 +26,7 @@ public class CustomerDAO {
             return rowsInserted > 0;
 
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -43,8 +44,6 @@ public class CustomerDAO {
                 }
             }
         } catch (SQLException ex) {
-
-
         }
         return null;
     }
@@ -61,6 +60,7 @@ public class CustomerDAO {
                 }
             }
         } catch (SQLException ex) {
+
         }
         return null;
     }
@@ -79,6 +79,7 @@ public class CustomerDAO {
             }
 
         } catch (SQLException ex) {
+
         }
         return customers;
     }
@@ -101,6 +102,7 @@ public class CustomerDAO {
             return rowsUpdated > 0;
 
         } catch (SQLException ex) {
+
             return false;
         }
     }

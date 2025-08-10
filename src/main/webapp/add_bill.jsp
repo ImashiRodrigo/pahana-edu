@@ -96,6 +96,7 @@
         <div class="top-actions">
 
             <a href="dashboard">Back</a>
+
         </div>
         <!-- Select Customer -->
         <label for="accountNumber">Select Customer (Account Number)</label>
