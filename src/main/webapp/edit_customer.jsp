@@ -77,8 +77,7 @@
     </div>
     <form action="customer" method="post">
         <input type="hidden" name="_method" value="PUT">
-        <label>ID</label>
-        <input type="text" name="id" value="<%= customer.getId() %>" readonly>
+
 
         <label>Account Number</label>
         <input type="number" name="accountNumber" value="<%= customer.getAccountNumber() %>" readonly>
