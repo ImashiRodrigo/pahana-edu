@@ -31,6 +31,7 @@ public class BillService {
 
     // Update existing bill
     public boolean updateBill(Bill bill) {
+
          boolean updated = billDAO.updateBill(bill);
          if(updated){
              List<BillItem> items = billItemService.getBillItemsByBillId(bill.getId());
@@ -42,6 +43,7 @@ public class BillService {
              }
          return updated;
          }
+
 
     // Delete bill by ID
     public boolean deleteBill(int id) {

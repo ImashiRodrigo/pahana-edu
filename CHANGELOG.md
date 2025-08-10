@@ -19,8 +19,6 @@
 ---
 
 *This release introduces new features and important bug fixes, enhancing the overall reliability and usability of the system.*
-
-
 ## [1.0.0] - Initial Release - Pending
 
 ### 🚀 New Features

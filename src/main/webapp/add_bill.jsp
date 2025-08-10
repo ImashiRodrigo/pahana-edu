@@ -94,6 +94,7 @@
     <h2>Create New Bill</h2>
     <form action="bill" method="post">
         <div class="top-actions">
+
             <a href="dashboard">Back</a>
         </div>
         <!-- Select Customer -->
@@ -153,6 +154,7 @@
         </table>
         <!-- Total (Optional, could be auto-calculated in backend) -->
         <label>Total Amount (LKR)</label>
+
         <input type="number" name="totalAmount" step="0.01" required readonly>
 
         <!-- Submit -->
@@ -160,6 +162,7 @@
     </form>
 </div>
 </body>
+
 <!-- Add this script at the bottom of your HTML before </body> -->
 <script>
     function calculateTotal() {

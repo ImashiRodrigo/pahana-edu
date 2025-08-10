@@ -70,6 +70,7 @@
 <div class="container">
     <h2>Customer List</h2>
     <div class="top-actions">
+
         <a href="dashboard">Back</a>
     </div>
     <table>

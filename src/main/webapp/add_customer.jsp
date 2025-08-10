@@ -55,6 +55,7 @@
 <div class="container">
     <h2>Add Customer</h2>
     <div class="top-actions">
+
         <a href="dashboard">Back</a>
     </div>
     <form action="customer" method="post">

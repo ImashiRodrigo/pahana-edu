@@ -148,6 +148,7 @@ public class BillServlet extends HttpServlet {
                 }
 
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("error", "Invalid input.");

@@ -79,7 +79,6 @@
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="id" value="<%= customer.getId()%>">
 
-
         <label>Account Number</label>
         <input type="number" name="accountNumber" value="<%= customer.getAccountNumber() %>" readonly>
 

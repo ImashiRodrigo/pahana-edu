@@ -108,6 +108,7 @@
   <p>Click <b>Logout</b> or close your browser to exit the system.</p>
 
   <a href="dashboard" class="back-button">Back to Dashboard</a>
+
 </div>
 
 </body>

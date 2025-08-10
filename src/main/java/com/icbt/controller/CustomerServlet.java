@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
 import java.util.List;
 
 @WebServlet("/customer")
@@ -32,6 +33,7 @@ public class CustomerServlet extends HttpServlet {
 
         String idParam = req.getParameter("id");
         String action =  req.getParameter("action");
+
         if ("new".equalsIgnoreCase(action)) {
             req.getRequestDispatcher("add_customer.jsp").forward(req, resp);
         } else if ("view".equalsIgnoreCase(action)) {
@@ -45,6 +47,7 @@ public class CustomerServlet extends HttpServlet {
             req.setAttribute("customers" , customers );
             req.getRequestDispatcher("account-detail.jsp").forward(req, resp);
         }
+
 
         if  (idParam != null) {
             if("edit".equalsIgnoreCase(action)) {

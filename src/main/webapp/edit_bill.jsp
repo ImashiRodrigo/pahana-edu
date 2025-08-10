@@ -118,6 +118,7 @@
         <input type="number" name="accountNumber" value="<%= bill.getAccountNumber() %>" required>
 
         <label>Total Amount (LKR)</label>
+
         <input type="number" step="0.01" name="totalAmount" value="<%= bill.getTotalAmount() %>" required readonly>
 
         <!-- Edit Bill Items -->
@@ -165,6 +166,7 @@
     </form>
 </div>
 </body>
+
 <!-- Add this script at the bottom of your HTML before </body> -->
 <script>
     function calculateTotal() {
