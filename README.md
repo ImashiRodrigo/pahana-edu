@@ -29,7 +29,7 @@ A Java-based **Bookshop Billing & Management System** that provides secure user 
 - Linked from navigation menu for quick access
 
 ### 🧪 Testing
-- JUnit tests for DAO and service layers
+- JUnit tests for service layers
 - Covers CRUD operations, login validation, and billing calculations
 
 ---
@@ -59,10 +59,10 @@ Before you begin, ensure you have the following installed:
 
 - **Java JDK 8+**
 - **Apache Tomcat 9+**
-- **MySQL Server 5.7+ / 8+**
+- **MySQL Server 8+**
 - **Maven** (for building the project)
 - **Git** (for cloning the repository)
-- **JUnit 4/5** (already included in Maven dependencies)
+- **JUnit 5** (already included in Maven dependencies)
 
 ---
 
@@ -72,8 +72,8 @@ Follow these steps to set up the application after cloning the repository.
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/ImashiRodrigo/pahana-edu.git
+cd ImashiRodrigo 
 ```
 
 2️⃣ Import Database
@@ -88,9 +88,9 @@ Open src/util/DBConnection.java (or your DB config file)
 
 Update the credentials:
 ```java
-private static final String URL = "jdbc:mysql://localhost:3306/bookshop_db";
+private static final String URL = "jdbc:mysql://localhost:3306/pahana_edu";
 private static final String USER = "root";
-private static final String PASSWORD = "your_password";
+private static final String PASSWORD = "";
 ```
 4️⃣ Build the Project
 If using Maven:
